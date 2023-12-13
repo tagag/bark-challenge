@@ -1,0 +1,31 @@
+{
+  "name": "undersourced-backend",
+  "version": "1.0.0",
+  "description": "Undersourced api server",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node .",
+    "test": "node  --experimental-vm-modules ./node_modules/.bin/jest"
+  },
+  "devDependencies": {
+    "jest": "^28.1.0"
+  },
+  "keywords": [
+    "bark",
+    "backend"
+  ],
+  "author": "tagag",
+  "license": "",
+  "dependencies": {
+    "axios": "^1.2.4",
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^8.2.0",
+    "express": "^4.18.2",
+    "express-jwt": "^7.7.7",
+    "helmet": "^6.0.0",
+    "winston": "^3.2.1",
+    "ws": "^8.11.0"
+  }
+}
