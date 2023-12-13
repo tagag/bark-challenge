@@ -12,7 +12,7 @@ describe('validate ', () => {
     const password = 'passwo';
     const passValidator = new PasswordValidator(password);
     expect(() => passValidator.validate()).toThrow(
-      'Password must be 8 characters or more',
+      passValidator.errorMessages.len,
     );
   });
   it('shoud throw error when password has no digit', () => {
@@ -41,7 +41,7 @@ describe('validate ', () => {
       passValidator.errorMessages.cap,
     );
   });
-  it('shoud not throw error', () => {
+  it('shoud not throw error when password fulfills all requirement', () => {
     const password = 'Password123!';
     const passValidator = new PasswordValidator(password);
     expect(() => passValidator.validate()).not.toThrow();

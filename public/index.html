@@ -72,7 +72,6 @@
             $('#submit').addClass('disabled');
             $('#confirm-password').addClass('is-invalid');
             $('#confirm-password').removeClass('is-valid');
-            console.log('blurrrrr')
           }
         });
         $('#create').click((e) => {
@@ -108,7 +107,7 @@
 
     <form  id="password-form" class="row g-4 visually-hidden">
       <div class="col-md-4">
-        <label for="password" class="form-label">Password</label>
+        <p class="text-start fw-medium">Please enter your new password</p>
         <!-- <div class="row" bis_skin_checked="1">
           <div class="col">
             <input type="text" class="form-control is-valid" id="password" value=""   placeholder="Enter Password" required>
@@ -132,6 +131,11 @@
       <div class="col-12" bis_skin_checked="1">
         <button id="submit" class="btn btn-primary disabled" type="submit">Submit</button>
       </div>
+      <div class="col-md-4">
+        <p class="text-start fw-light fst-italic text-break">Password must be minimum of 8 characters, a digit,
+          a symbol, must have capital and small letters.</p>
+      </div>
+      
     </form>
 
   </body>

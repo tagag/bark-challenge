@@ -16,7 +16,7 @@ class PasswordValidator {
     return {
       len: 'Password must be 8 characters or more',
       digits: 'Password must include at least one digit',
-      symbols: 'Password must contain at least one symbol',
+      symbols: 'Password must contain at least one symbol e.g (@!`)',
       smallCap: 'Password must have a small letter',
       cap: 'Password must have a capital letter',
     };
