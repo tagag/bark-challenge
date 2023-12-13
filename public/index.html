@@ -21,17 +21,20 @@
       }
       const toggleError = (show) => {
         const passwordField = $("#password");
+        const confirmPasswordField = $("#confirm-password");
         const errorField = $("#error");
         if (show){
           passwordField.removeClass("is-valid");
           passwordField.addClass('is-invalid');
           errorField.addClass('invalid-feedback');
           errorField.removeClass('valid-feedback');
+          confirmPasswordField.addClass('visually-hidden');
         } else {
           passwordField.removeClass("is-invalid");
           passwordField.addClass('is-valid');
           errorField.addClass('valid-feedback');
           errorField.removeClass('invalid-feedback');
+          confirmPasswordField.removeClass('visually-hidden');
         }
       }
 
@@ -42,7 +45,6 @@
         if (response.status === 200){
           toggleError(false);
           $('#error').text(text);
-          $('#submit').removeClass('disabled');
 
         } else if (response.status === 400) {
           toggleError(true);
@@ -59,6 +61,20 @@
         $("#password").keyup( (e) => {
           debouncedRequest();  
         });
+        $("#confirm-password").blur((e) => {
+          if ($("#password").val() ===  $("#confirm-password").val()){
+            $('#submit').removeClass('disabled');
+            $("#error-2").addClass('visually-hidden');
+            $('#confirm-password').addClass('is-valid');
+            $('#confirm-password').removeClass('is-invalid');
+          } else {
+            $("#error-2").removeClass('visually-hidden');
+            $('#submit').addClass('disabled');
+            $('#confirm-password').addClass('is-invalid');
+            $('#confirm-password').removeClass('is-valid');
+            console.log('blurrrrr')
+          }
+        });
         $('#create').click((e) => {
           if (!$('#email').val()){
             return;
@@ -68,6 +84,11 @@
           $('#password-form').removeClass('visually-hidden');
 
         });
+        $('#submit').click((e) => {
+          if ($("#password").val() !==  $("#confirm-password").val()){
+            e.preventDefault()
+          }
+        })
       });
     
     </script>
@@ -85,7 +106,7 @@
     </form>
 
 
-    <form  id="password-form" class="row g-3 visually-hidden">
+    <form  id="password-form" class="row g-4 visually-hidden">
       <div class="col-md-4">
         <label for="password" class="form-label">Password</label>
         <!-- <div class="row" bis_skin_checked="1">
@@ -96,10 +117,16 @@
             <button class="btn btn-secondary btn-sm" type="button">Generate</button>
           </div>
         </div> -->
-        <input type="text" class="form-control" id="password" value=""   placeholder="Enter Password" required>
-        
-        <div class="valid-feedback" bis_skin_checked="1" id="error">
-          
+        <div class="col-md-12">
+          <input  class="form-control" id="password" value="" type="password"  placeholder="Enter Password">
+          <div class="valid-feedback" bis_skin_checked="1" id="error">
+        </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 10px;">
+          <input  class="form-control visually-hidden" id="confirm-password" value="" type="password"  placeholder="Confirm Password">
+          <div class="invalid-feedback visually-hidden " bis_skin_checked="1" id="error-2">
+            Confirm password and password are not the same
+          </div>
         </div>
       </div>
       <div class="col-12" bis_skin_checked="1">
